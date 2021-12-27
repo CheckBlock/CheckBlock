@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import SidebarContainer from './Containers/SidebarContainer.jsx';
+import MapContainer from './Containers/MapContainer.jsx'
 
-const App = props => {
+const App = () => {
   return (
-      <h1>Hello World</h1> 
+    <div>
+      <SidebarContainer />
+      <MapContainer />
+    </div>
   );
 };
 
