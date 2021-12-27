@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/CheckBlock/CheckBlock.git"
   },
-  "author": "",
+  "author": "Team MewTwo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/CheckBlock/CheckBlock/issues"
@@ -20,7 +20,6 @@
   "devDependencies": {
     "express": "^4.17.2",
     "nodemon": "^2.0.15",
-    "pg": "^8.7.1",
     "soda-js": "^0.2.3"
   }
 }
