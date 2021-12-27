@@ -4,7 +4,7 @@ import RangeSlider from '../Components/RangeSlider.jsx'
 
 const SidebarContainer = () => {
   return (
-    <div>
+    <div style={{width: '30%', backgroundColor: 'blue'}}>
         <FormGroup>
           <FormControlLabel control={<Checkbox defaultChecked />} label="Crime Rates" />
           <FormControlLabel control={<Checkbox defaultChecked />} label="311 Complaints" />

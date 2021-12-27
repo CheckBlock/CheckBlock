@@ -4,7 +4,7 @@ import MapContainer from './Containers/MapContainer.jsx'
 
 const App = () => {
   return (
-    <div>
+    <div style={{display: 'flex', justifyContent: 'space-around'}}>
       <SidebarContainer />
       <MapContainer />
     </div>
