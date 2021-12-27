@@ -1,12 +1,16 @@
 import React from 'react'
-import Metric from '../Components/Metric.jsx'
+import { FormGroup, FormControlLabel, Checkbox, TextField, Slider, Box  } from '@mui/material'
+import RangeSlider from '../Components/RangeSlider.jsx'
 
 const SidebarContainer = () => {
   return (
     <div>
-      <Metric />
-      <Metric />
-      <Metric />
+        <FormGroup>
+          <FormControlLabel control={<Checkbox defaultChecked />} label="Crime Rates" />
+          <FormControlLabel control={<Checkbox defaultChecked />} label="311 Complaints" />
+          <FormControlLabel control={<Checkbox defaultChecked />} label="Violations" />
+          <RangeSlider/>
+        </FormGroup>
     </div>
   )
 }

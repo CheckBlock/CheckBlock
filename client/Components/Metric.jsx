@@ -1,8 +1,12 @@
 import React from "react";
+import { Paper, Checkbox, Typography, FormGroup, FormControlLabel } from "@mui/material";
 
 const Metric = () => {
   return (
-    <h1> Hello world</h1>
+    <FormGroup>
+      <FormControlLabel control={<Checkbox defaultChecked />} label="Label" />
+      <FormControlLabel disabled control={<Checkbox />} label="Disabled" />
+    </FormGroup>
   )
 }
 
