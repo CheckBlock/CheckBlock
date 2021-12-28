@@ -26,7 +26,7 @@ const heatmapData = {
 const MapContainer = () => {
   const midpoint = {lat: 40.6958, lng: -73.9171}
   return (
-    <Box sx={{width: '70%', height: '700px'}}>
+    <Box sx={{width: '80%', height: '700px'}}>
       <GoogleMapReact 
         bootstrapURLKeys={{key: process.env.GOOGLE_API}}
         defaultCenter={midpoint}

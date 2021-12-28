@@ -14,7 +14,7 @@ const RangeSlider = () => {
   };
 
   return (
-    <Box sx={{width: '80%', backgroundColor: 'red'}}>
+    <Box pt={5} sx={{width: '80%', margin: '0 auto'}}>
       <Slider
         // getAriaLabel={() => 'Median Rental Price Range'}
         value={value}
