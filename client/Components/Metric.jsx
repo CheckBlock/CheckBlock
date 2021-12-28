@@ -10,4 +10,4 @@ const Metric = () => {
   )
 }
 
-export default Metric
+export default Metric;
