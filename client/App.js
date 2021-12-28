@@ -15,13 +15,13 @@ const App = () => {
       const _date = new Date();
       const year = _date.getFullYear();
       const month = _date.getMonth();
-      const day = _date.getDate() - 7;
+      const day = _date.getDate() - 27;
       
       let zip_str = "";
       zips.forEach((el, i) => {
         zip_str += `incident_zip="${el}"${i < zips.length - 1 ? ' OR ' : ''}`;
       });
-      return `created_date between "${year}-${month}-${day}T00:00:00" and "${year}-${month}-${day + 7}T23:59:59" AND (${(zip_str)})`;
+      return `created_date between "${year}-${month}-${day}T00:00:00" and "${year}-${month}-${day + 27}T23:59:59" AND (${(zip_str)})`;
     };
     const whereParamStr = whereParam();
     // let location = [1,2,3,4,5] // zip
@@ -30,6 +30,7 @@ const App = () => {
       url: "https://data.cityofnewyork.us/resource/erm2-nwe9.json",
       type: "GET",
       data: {
+        $limit: 40000,
         $order: "created_date DESC",
         $select: "latitude as lat, longitude as lng",
         $where: whereParam(),
@@ -37,6 +38,8 @@ const App = () => {
       },
     }).done((data) => {
       const dataFormatted = data.map(el => {
+        // el.lat = Number(el.lat).toFixed(2);
+        // el.lng = Number(el.lng).toFixed(2);
         el.lat = Number(el.lat);
         el.lng = Number(el.lng);
         return {lat: el.lat, lng: el.lng};

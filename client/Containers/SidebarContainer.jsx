@@ -109,7 +109,7 @@ const SidebarContainer = () => {
         <h2 onClick={()=> setBk(!showBk)}>Brooklyn ▾</h2>
         {showBk && genBorough(brooklyn)}
         <h2 onClick={() => setSI(!showSI)}>Staten Island ▾</h2>
-        <div style={showSI ? {visibility:"false"} : {visibility:"true"}}> genBorough(statenIsland)</div>
+        <div style={showSI ? {visibility:"false"} : {visibility:"true"}}> {genBorough(statenIsland)}</div>
         <RangeSlider />
       </FormGroup>
     </Box>
