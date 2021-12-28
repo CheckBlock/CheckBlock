@@ -87,11 +87,16 @@ const SidebarContainer = () => {
   
   const genBorough = (borough) => {
     return borough.map((el, i) => 
-      <FormControlLabel
-        key = {`${i}_${borough}`}
-        control={<Checkbox/>}
-        label={el}
-      />);
+      // <FormControlLabel
+      //   key = {`${i}_${borough}`}
+      //   control={<Checkbox/>}
+      //   label={el}
+      //   />
+      <div key = {`${i}_${borough}`}>
+        <input type="checkbox" id="test" name={el} onClick={()=> console.log("")}/>
+        <label htmlFor="test">{el}</label>
+      </div>
+      );
   };
 
   //onChange -> setHood() => selectedHoods.push(neighborhood)
@@ -101,15 +106,15 @@ const SidebarContainer = () => {
       <FormGroup>
         <Typography variant="h3">Metrics:</Typography>
         <h2 onClick={()=> setBx(!showBronx)}>Bronx ▾</h2>
-        {showBronx && genBorough(bronx)}
+        <div style={showBronx ? {visibility:'visible'} : {visibility:'hidden', height:'0'}}>{genBorough(bronx)}</div>
         <h2 onClick={()=> setM(!showManhattan)}>Manhattan ▾</h2>
-        {showManhattan && genBorough(manhattan)}
+        <div style={showManhattan ? {visibility:'visible'} : {visibility:'hidden', height:'0'}}>{genBorough(manhattan)}</div>
         <h2 onClick={()=> setQ(!showQueens)}>Queens ▾</h2>
-        {showQueens && genBorough(queens)}
+        <div style={showQueens ? {visibility:'visible'} : {visibility:'hidden', height:'0'}}>{genBorough(queens)}</div>
         <h2 onClick={()=> setBk(!showBk)}>Brooklyn ▾</h2>
-        {showBk && genBorough(brooklyn)}
+        <div style={showBk ? {visibility:'visible'} : {visibility:'hidden', height:'0'}}>{genBorough(brooklyn)}</div>
         <h2 onClick={() => setSI(!showSI)}>Staten Island ▾</h2>
-        <div style={showSI ? {visibility:"false"} : {visibility:"true"}}> {genBorough(statenIsland)}</div>
+        <div style={showSI ? {visibility:'visible'} : {visibility:'hidden', height:'0'}}>{genBorough(statenIsland)}</div>
         <RangeSlider />
       </FormGroup>
     </Box>

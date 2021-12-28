@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import GoogleMapReact from 'google-map-react';
 import Box from '@mui/material/Box';
 
@@ -21,8 +21,14 @@ import Box from '@mui/material/Box';
 //   }
 // };
 
+function handleZoomChanged(){
+  console.log(this.getZoom())
+  console.log("test")  //this refers to Google Map instance
+}
 
 const MapContainer = ({ points }) => {
+
+  const [zoomLvl, setZoomLvl] = useState(10.75);
 
   const heatmapData = {
     positions: points,
@@ -43,30 +49,44 @@ const MapContainer = ({ points }) => {
         'rgba(191, 0, 31, 1)',
         'rgba(255, 0, 0, 1)'
       ],
-      //gradient: {gradient},
       radius: 20,   
       opacity: .6,
-      maxIntensity: 65
+      maxIntensity: 1 / zoomLvl * 5000
 
     }
   };
 
   console.log("heatMap",heatmapData);
+  
+
 
   // console.log("points has been passed down from app.jsx",points);
-  const midpoint = {lat: 40.6958, lng: -73.9171};
+  const midpoint = {lat: 40.7158, lng: -73.9171};
   return (
     <Box sx={{width: '80%', height: '700px'}}>
+      {console.log("heatmapData maxintensity", heatmapData.options.maxIntensity)}
       <GoogleMapReact 
         bootstrapURLKeys={{ key: "AIzaSyBfbNoclfkFu3MjEoGcUr9Q12qbpl6Cwuw", libraries:['visualization'] }}
         defaultCenter={midpoint}
-        defaultZoom={12}
+        defaultZoom={10.75}
         heatmapLibrary={true} 
         heatmap={heatmapData}
+        onChange={() => setZoomLvl(zoomLvl + 1)}
         >
       </GoogleMapReact>
     </Box>
-  )
+  );
 }
 
 export default MapContainer;
+
+// onZoomChanged = {() => {
+//   const newCenter = this.googleMap.current.getCenter();
+//   this.setState({
+//     zoom: this.googleMap.current.getZoom(),
+//     center: {
+//       latitude: newCenter.lat(),
+//       longitude: newCenter.lng()
+//     }
+//   });
+// }}
