@@ -40,6 +40,9 @@
     "@babel/preset-react": "^7.16.5",
     "css-loader": "^6.5.1",
     "style-loader": "^3.3.1",
+    "jquery": "^3.6.0",
+    "node-fetch": "2.0",
+    "soda-js": "^0.2.3",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.1"
   }

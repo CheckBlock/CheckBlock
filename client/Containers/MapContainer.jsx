@@ -66,7 +66,7 @@ const MapContainer = ({ points }) => {
     <Box sx={{width: '80%', height: '700px'}}>
       {console.log("heatmapData maxintensity", heatmapData.options.maxIntensity)}
       <GoogleMapReact 
-        bootstrapURLKeys={{ key: "AIzaSyBfbNoclfkFu3MjEoGcUr9Q12qbpl6Cwuw", libraries:['visualization'] }}
+        bootstrapURLKeys={{ key: process.env.GOOGLE_API , libraries:['visualization'] }}
         defaultCenter={midpoint}
         defaultZoom={10.75}
         heatmapLibrary={true} 

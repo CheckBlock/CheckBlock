@@ -3,7 +3,7 @@ import SidebarContainer from './Containers/SidebarContainer.jsx';
 import MapContainer from './Containers/MapContainer.jsx'
 import Box from '@mui/system/Box';
 import Navbar from './Components/Navbar.jsx'
-import $ from 'jQuery';
+import $ from 'jquery'
 
 const App = () => {
 
@@ -26,6 +26,7 @@ const App = () => {
     const whereParamStr = whereParam();
     // let location = [1,2,3,4,5] // zip
     // const whereParam = location(`created & incident_zip = 1 or 2, 3, 4, 5`)
+
     $.ajax({
       url: "https://data.cityofnewyork.us/resource/erm2-nwe9.json",
       type: "GET",
@@ -34,7 +35,7 @@ const App = () => {
         $order: "created_date DESC",
         $select: "latitude as lat, longitude as lng",
         $where: whereParam(),
-        $$app_token: "qvibJjV0W3u13ihBhQ1fXcxA6",
+        $$app_token: process.env.url_311_API,
       },
     }).done((data) => {
       const dataFormatted = data.map(el => {
@@ -46,6 +47,7 @@ const App = () => {
       });
       setDataPts(dataFormatted);
       // console.log("data from the API", dataFormatted);
+
     });  
   };
 

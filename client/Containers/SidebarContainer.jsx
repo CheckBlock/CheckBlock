@@ -100,7 +100,7 @@ const SidebarContainer = () => {
   };
 
   //onChange -> setHood() => selectedHoods.push(neighborhood)
-  
+
   return (
     <Box sx={{ width: "15%" }}>
       <FormGroup>
