@@ -34,6 +34,9 @@
   "devDependencies": {
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-react": "^7.16.5",
+    "jquery": "^3.6.0",
+    "node-fetch": "2.0",
+    "soda-js": "^0.2.3",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.1"
   }

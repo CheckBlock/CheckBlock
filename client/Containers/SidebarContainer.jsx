@@ -1,8 +1,9 @@
-import React from 'react'
-import { FormGroup, FormControlLabel, Checkbox, TextField, Slider, Box  } from '@mui/material'
-import RangeSlider from '../Components/RangeSlider.jsx'
+import React from 'react';
+import { FormGroup, FormControlLabel, Checkbox, TextField, Slider, Box  } from '@mui/material';
+import RangeSlider from '../Components/RangeSlider.jsx';
 
-const SidebarContainer = () => {
+const SidebarContainer = ( { get_URL_data } = props ) => {
+
   return (
     <div>
         <FormGroup>
