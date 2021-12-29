@@ -45,12 +45,11 @@ const neighborhoods = {
   Willowbrook: [10314],
 };
 
-
-//{ const neighborhoods =}, [
-//{   {},
-//{     neighborhood: 'Kingsbridge - Riverdale',},
-//{     borough: 'bronx',},
-//     zip: [10463, 10471],},
+// const neighborhoods = [
+//   {
+//     neighborhood: 'Kingsbridge - Riverdale',
+//     borough: 'bronx',
+//     zip: [10463, 10471],
 //   },
 //   {
 //     neighborhood: 'Northeast Bronx',
@@ -82,7 +81,9 @@ const neighborhoods = {
 //     borough: 'bronx',
 //     zip: [10454, 10455, 10459, 10474],
 //   },
-//   { neighborhood: 'Greenpoint', borough: 'brooklyn', zip: [11211, 11222] },
+//   { 
+//     neighborhood: 'Greenpoint', 
+//     borough: 'brooklyn', zip: [11211, 11222] },
 //   {
 //     neighborhood: 'Downtown - Heights - Park Slope',
 //     borough: 'brooklyn',

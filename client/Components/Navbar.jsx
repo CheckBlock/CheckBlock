@@ -9,14 +9,11 @@ import neighborhoods from '../zip_codes';
 
 const Navbar = () => {
 
-    return (
+  return (
     <AppBar position="static">
-        <Toolbar>
-          <Typography variant='h3'>Neighborpedia</Typography>
-          <IconButton href="https://github.com/CheckBlock/CheckBlock" target="_blank" color="inherit">
-            <GitHubIcon />
-          </IconButton>
-        </Toolbar>
+      <Toolbar>
+        <Typography variant='h3'>Neighborpedia</Typography>
+      </Toolbar>
     </AppBar>
   );
 };

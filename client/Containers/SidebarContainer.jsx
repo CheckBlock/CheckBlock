@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import RangeSlider from "../Components/RangeSlider.jsx";
 import neighborhoods from "../zip_codes.js";
+import FilterTypes from "./FilterTypes.jsx";
 
 const bronx = [
   "Kingsbridge - Riverdale",
@@ -76,6 +77,12 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
   const [showSI, setSI] = useState(false);
 
   const [checkedHoods, setCheckedHoods] = useState({});
+  const [_complaints, setComplaints] = useState([]);
+  const [zips, setZips] = useState([]);
+
+  const selectedComplaints = (complaints) =>  {
+    setComplaints(complaints);
+  };
   
   const handleChange = (event) => {
     setCheckedHoods({...checkedHoods, [event.target.name]: event.target.checked});
@@ -86,7 +93,8 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
     Object.keys(checkedHoods).forEach(el => {
       if(checkedHoods[el]) selectedZips = selectedZips.concat(neighborhoods[el]); 
     });
-    get_API_Data(selectedZips);
+    setZips(selectedZips);
+    get_API_Data(selectedZips, _complaints);
   }, [checkedHoods]);  
 
 
@@ -105,9 +113,10 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
   };
 
   return (
-    <Box sx={{ width: "15%" }}>
+    <Box sx={{ height:'calc(100vh - 64px)', width:'25%', minWidth:'270px', overflow:'scroll', marginLeft:'2%' }}>
       <form>
-        <h2 onClick={() => setBx(!showBronx)}>Bronx ▾</h2>
+        <h2>Boroughs:</h2>
+        <div className="boroughClick" onClick={() => setBx(!showBronx)}>{`Bronx ${showBronx ? '🔼' : '🔽'}`}</div>
         <div
           style={
             showBronx
@@ -117,7 +126,7 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
         >
           {genBorough(bronx)}
         </div>
-        <h2 onClick={() => setM(!showManhattan)}>Manhattan ▾</h2>
+        <div className="boroughClick" onClick={() => setM(!showManhattan)}>{`Manhattan ${showManhattan ? '🔼' : '🔽'}`}</div>
         <div
           style={
             showManhattan
@@ -127,7 +136,7 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
         >
           {genBorough(manhattan)}
         </div>
-        <h2 onClick={() => setQ(!showQueens)}>Queens ▾</h2>
+        <div className="boroughClick" onClick={() => setQ(!showQueens)}>{`Queens ${showQueens ? '🔼' : '🔽'}`}</div>
         <div
           style={
             showQueens
@@ -137,7 +146,7 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
         >
           {genBorough(queens)}
         </div>
-        <h2 onClick={() => setBk(!showBk)}>Brooklyn ▾</h2>
+        <div className="boroughClick" onClick={() => setBk(!showBk)}>{`Brooklyn ${showBk ? '🔼' : '🔽'}`}</div>
         <div
           style={
             showBk
@@ -147,7 +156,7 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
         >
           {genBorough(brooklyn)}
         </div>
-        <h2 onClick={() => setSI(!showSI)}>Staten Island ▾</h2>
+        <div className="boroughClick" onClick={() => setSI(!showSI)}>{`Might as well be NJ ${showSI ? '🔼' : '🔽'}`}</div>
         <div
           style={
             showSI
@@ -158,6 +167,7 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
           {genBorough(statenIsland)}
         </div>
         <RangeSlider priceValues={ priceValues }/>
+        <FilterTypes selectedComplaints={ selectedComplaints} get_API_Data={ get_API_Data } selectedZips={ zips }/>
       </form>
     </Box>
   );
