@@ -1,0 +1,20 @@
+html {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.shadow {
+  box-shadow: 2px 2px 10px 1px;
+}
+
+.roundBorders {
+  border-radius: 15px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-around;
+}

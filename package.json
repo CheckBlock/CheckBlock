@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/server.js"
+    "start": "NODE_ENV=production node server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development webpack serve --open & nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,32 @@
     "url": "https://github.com/CheckBlock/CheckBlock/issues"
   },
   "homepage": "https://github.com/CheckBlock/CheckBlock#readme",
-  "devDependencies": {
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.5",
+    "@mui/material": "^5.2.6",
+    "babel-loader": "^8.2.3",
+    "dotenv": "^10.0.0",
+    "dotenv-webpack": "^7.0.3",
     "express": "^4.17.2",
+    "google-map-react": "^2.1.10",
+    "html-webpack-plugin": "^5.5.0",
+    "jquery": "^3.6.0",
     "nodemon": "^2.0.15",
-    "soda-js": "^0.2.3"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.65.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "css-loader": "^6.5.1",
+    "style-loader": "^3.3.1",
+    "jquery": "^3.6.0",
+    "node-fetch": "2.0",
+    "soda-js": "^0.2.3",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.1"
   }
 }
