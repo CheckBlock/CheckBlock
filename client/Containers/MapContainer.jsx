@@ -12,7 +12,7 @@ const PriceDots = ({text}) => (
     textAlign: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: '50%',
+    borderRadius: '15%',
     transform: 'translate(-50%, -50%)',
     opacity: '75%'
   }}>
@@ -22,8 +22,6 @@ const PriceDots = ({text}) => (
 
 const placePrices = (min, max) => {
   const medianPriceDots = [];
-  // console.log('slider price ', document.getElementsByClassName('MuiSlider-valueLabelLabel'));
-
   median_prices.forEach(el => {
     if (el.rent > min && el.rent < max) {
       medianPriceDots.push(
@@ -64,14 +62,10 @@ const MapContainer = ({ points, prices }) => {
       maxIntensity: 300
     }
   };
-
-  console.log("heatMap",heatmapData);
   
-  // console.log("points has been passed down from app.jsx",points);
   const midpoint = {lat: 40.7158, lng: -73.9171};
   return (
     <Box sx={{width: '75%', height: '95vh'}}>
-      {console.log("heatmapData maxintensity", heatmapData.options.maxIntensity)}
       <GoogleMapReact 
         bootstrapURLKeys={{ key: process.env.GOOGLE_API , libraries:['visualization'] }}
         defaultCenter={midpoint}
@@ -80,6 +74,11 @@ const MapContainer = ({ points, prices }) => {
         heatmap={heatmapData}
       >
         {placePrices(prices[0], prices[1])}
+        <PriceDots
+          lat={40.583343687828304}
+          lng={-74.14920308054795}
+          text={'Really?!?! You want to live here?'}
+        />
       </GoogleMapReact>
     </Box>
   );

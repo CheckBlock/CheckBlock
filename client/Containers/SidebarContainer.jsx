@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import RangeSlider from "../Components/RangeSlider.jsx";
 import neighborhoods from "../zip_codes.js";
+import FilterTypes from "./FilterTypes.jsx";
 
 const bronx = [
   "Kingsbridge - Riverdale",
@@ -76,6 +77,12 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
   const [showSI, setSI] = useState(false);
 
   const [checkedHoods, setCheckedHoods] = useState({});
+  const [_complaints, setComplaints] = useState([]);
+  const [zips, setZips] = useState([]);
+
+  const selectedComplaints = (complaints) =>  {
+    setComplaints(complaints);
+  };
   
   const handleChange = (event) => {
     setCheckedHoods({...checkedHoods, [event.target.name]: event.target.checked});
@@ -86,7 +93,8 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
     Object.keys(checkedHoods).forEach(el => {
       if(checkedHoods[el]) selectedZips = selectedZips.concat(neighborhoods[el]); 
     });
-    get_API_Data(selectedZips);
+    setZips(selectedZips);
+    get_API_Data(selectedZips, _complaints);
   }, [checkedHoods]);  
 
 
@@ -158,6 +166,7 @@ const SidebarContainer = ({ get_API_Data, priceValues }) => {
           {genBorough(statenIsland)}
         </div>
         <RangeSlider priceValues={ priceValues }/>
+        <FilterTypes selectedComplaints={ selectedComplaints} get_API_Data={ get_API_Data } selectedZips={ zips }/>
       </form>
     </Box>
   );
