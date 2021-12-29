@@ -20,22 +20,25 @@ const PriceDots = ({text}) => (
   </div>
 );
 
-const placePrices = () => {
+const placePrices = (min, max) => {
   const medianPriceDots = [];
+  // console.log('slider price ', document.getElementsByClassName('MuiSlider-valueLabelLabel'));
+
   median_prices.forEach(el => {
-    medianPriceDots.push(
-      <PriceDots
-        lat={el.lat}
-        lng={el.lng}
-        text={`$${el.rent}`}
-      />
-    );
+    if (el.rent > min && el.rent < max) {
+      medianPriceDots.push(
+        <PriceDots
+          lat={el.lat}
+          lng={el.lng}
+          text={`$${el.rent}`}
+        />
+      );
+    }
   });
-  console.log('placing prices', medianPriceDots);
   return medianPriceDots;
 };
 
-const MapContainer = ({ points }) => {
+const MapContainer = ({ points, prices }) => {
 
   const heatmapData = {
     positions: points,
@@ -67,16 +70,16 @@ const MapContainer = ({ points }) => {
   // console.log("points has been passed down from app.jsx",points);
   const midpoint = {lat: 40.7158, lng: -73.9171};
   return (
-    <Box sx={{width: '80%', height: '700px'}}>
+    <Box sx={{width: '75%', height: '95vh'}}>
       {console.log("heatmapData maxintensity", heatmapData.options.maxIntensity)}
       <GoogleMapReact 
         bootstrapURLKeys={{ key: process.env.GOOGLE_API , libraries:['visualization'] }}
         defaultCenter={midpoint}
-        defaultZoom={10.75}
+        defaultZoom={11.25}
         heatmapLibrary={true} 
         heatmap={heatmapData}
       >
-        {placePrices()}
+        {placePrices(prices[0], prices[1])}
       </GoogleMapReact>
     </Box>
   );

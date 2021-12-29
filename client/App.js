@@ -7,9 +7,13 @@ import $ from "jquery";
 
 const App = () => {
   const [points, setDataPts] = useState([]);
+  const [prices, setPrices ] = useState([0,10000]);
 
-  const get_API_Data = (array) => {
-    const zips = array;
+  const priceValues = (price_Arr) => {
+    setPrices(price_Arr);
+  };
+
+  const get_API_Data = (zips_Arr) => {
     const whereParam = () => {
       const _date = new Date();
       const year = _date.getFullYear();
@@ -17,16 +21,15 @@ const App = () => {
       const day = _date.getDate() - 27;
 
       let zip_str = "";
-      zips.forEach((el, i) => {
-        zip_str += `incident_zip="${el}"${i < zips.length - 1 ? " OR " : ""}`;
+      zips_Arr.forEach((el, i) => {
+        zip_str += `incident_zip="${el}"${i < zips_Arr.length - 1 ? " OR " : ""}`;
       });
-      return `created_date between "${year}-${month}-${day}T00:00:00" and "${year}-${month}-${
-        day + 27
-      }T23:59:59" AND (${zip_str})`;
+      // generating query string for SoQL API calls
+      if(zips_Arr.length){
+        return `created_date between "${year}-${month}-${day}T00:00:00" and "${year}-${month}-${day + 27}T23:59:59" AND (${zip_str})`;
+      }
+      else return `created_date between "${year}-${month}-${day}T00:00:00" and "${year}-${month}-${day + 27}T23:59:59"`;
     };
-    console.log(whereParam());
-    // let location = [1,2,3,4,5] // zip
-    // const whereParam = location(`created & incident_zip = 1 or 2, 3, 4, 5`)
 
     $.ajax({
       url: "https://data.cityofnewyork.us/resource/erm2-nwe9.json",
@@ -34,21 +37,17 @@ const App = () => {
       data: {
         $limit: 40000,
         $order: "created_date DESC",
-        $select: "latitude as lat, longitude as lng",
+        $select: "latitude as lat, longitude as lng, complaint_type",
         $where: whereParam(),
         $$app_token: process.env.url_311_API,
       },
     }).done((data) => {
       const dataFormatted = data.map((el) => {
-        // el.lat = Number(el.lat).toFixed(2);
-        // el.lng = Number(el.lng).toFixed(2);
         el.lat = Number(el.lat);
         el.lng = Number(el.lng);
         return { lat: el.lat, lng: el.lng };
       });
       setDataPts(dataFormatted);
-      // setDataPts(dataFormatted);
-      // console.log("data from the API", dataFormatted);
     });
   };
 
@@ -56,8 +55,8 @@ const App = () => {
     <>
       <Navbar />
       <Box className="flex shadow ">
-        <SidebarContainer get_API_Data={get_API_Data} />
-        <MapContainer points={points} />
+        <SidebarContainer get_API_Data={get_API_Data} priceValues={ priceValues }/>
+        <MapContainer points={points} prices={ prices }/>
       </Box>
     </>
   );

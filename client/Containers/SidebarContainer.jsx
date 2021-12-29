@@ -68,32 +68,27 @@ const statenIsland = [
   "South Beach - Tottenville",
 ];
 
-const SidebarContainer = ({ get_API_Data }) => {
+const SidebarContainer = ({ get_API_Data, priceValues }) => {
   const [showBronx, setBx] = useState(false);
   const [showManhattan, setM] = useState(false);
   const [showQueens, setQ] = useState(false);
   const [showBk, setBk] = useState(false);
   const [showSI, setSI] = useState(false);
-  const [points, setDataPts] = useState([]);
 
   const [checkedHoods, setCheckedHoods] = useState({});
-
+  
   const handleChange = (event) => {
-    setCheckedHoods({
-      ...checkedHoods,
-      [event.target.name]: event.target.checked,
-    });
-    console.log(checkedHoods);
-    setZipArr();
-  };
-
-  const setZipArr = () => {
+    setCheckedHoods({...checkedHoods, [event.target.name]: event.target.checked});
+  };    
+  
+  useEffect(() => {
     let selectedZips = [];
     Object.keys(checkedHoods).forEach(el => {
-      if(checkedHoods[el]) selectedZips = selectedZips.concat(neighborhoods[el]);
+      if(checkedHoods[el]) selectedZips = selectedZips.concat(neighborhoods[el]); 
     });
-    if(selectedZips.length > 0) get_API_Data(selectedZips);
-  };
+    get_API_Data(selectedZips);
+  }, [checkedHoods]);  
+
 
   const genBorough = (borough) => {
     return borough.map((el, i) => (
@@ -111,8 +106,7 @@ const SidebarContainer = ({ get_API_Data }) => {
 
   return (
     <Box sx={{ width: "15%" }}>
-      <FormGroup>
-        <Typography variant="h3">Metrics:</Typography>
+      <form>
         <h2 onClick={() => setBx(!showBronx)}>Bronx ▾</h2>
         <div
           style={
@@ -163,8 +157,8 @@ const SidebarContainer = ({ get_API_Data }) => {
         >
           {genBorough(statenIsland)}
         </div>
-        <RangeSlider />
-      </FormGroup>
+        <RangeSlider priceValues={ priceValues }/>
+      </form>
     </Box>
   );
 };

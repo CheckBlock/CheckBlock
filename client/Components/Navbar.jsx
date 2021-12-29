@@ -9,9 +9,7 @@ import neighborhoods from '../zip_codes';
 
 const Navbar = () => {
 
-  
-
-  return (
+    return (
     <AppBar position="static">
         <Toolbar>
           <Typography variant='h3'>Check Block</Typography>

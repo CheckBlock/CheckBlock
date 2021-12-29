@@ -6,11 +6,12 @@ const valueText = (value) => {
   return `${value}`;
 }
 
-const RangeSlider = () => {
+const RangeSlider = ({ priceValues }) => {
   const [value, setValue] = React.useState([0, 10000]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    priceValues(newValue);
   };
 
   return (
