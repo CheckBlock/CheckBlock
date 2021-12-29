@@ -2,17 +2,18 @@
   "name": "checkblock",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack serve --open & nodemon server/server.js"
+    "dev": "NODE_ENV=development webpack serve --open & nodemon server/server.js",
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CheckBlock/CheckBlock.git"
   },
-  "author": "",
+  "author": "Team MewTwo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/CheckBlock/CheckBlock/issues"
@@ -38,11 +39,14 @@
   "devDependencies": {
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-react": "^7.16.5",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "css-loader": "^6.5.1",
-    "style-loader": "^3.3.1",
+    "i": "^0.3.7",
     "jquery": "^3.6.0",
     "node-fetch": "2.0",
+    "npm": "^8.3.0",
     "soda-js": "^0.2.3",
+    "style-loader": "^3.3.1",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.1"
   }

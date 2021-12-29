@@ -2,3 +2,5 @@ ds_store
 package-lock.json
 node_modules
 .env
+git
+
