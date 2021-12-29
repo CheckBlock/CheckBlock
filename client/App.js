@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import SidebarContainer from "./Containers/SidebarContainer.jsx";
 import MapContainer from "./Containers/MapContainer.jsx";
 import Box from "@mui/system/Box";
@@ -8,14 +8,10 @@ import $ from "jquery";
 const App = () => {
   const [points, setDataPts] = useState([]);
   const [prices, setPrices ] = useState([0,10000]);
-  const [complaints, setComplaints] = useState([]);
+  const [hoods, setHoods] = useState({});
 
   const priceValues = (price_Arr) => {
     setPrices(price_Arr);
-  };
-
-  const selectedComplaints = (complaints) => {
-    setComplaints(complaints);
   };
 
   const get_API_Data = (zips_Arr, filter_Arr) => {
@@ -34,6 +30,9 @@ const App = () => {
         });
         zip_str += ")"
       }
+
+
+
       if(filter_Arr.length > 0) {
         filter_str += " AND (";
         filter_Arr.forEach((el, i) => {
@@ -76,9 +75,9 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <Box className="flex shadow ">
-        <SidebarContainer get_API_Data={get_API_Data} priceValues={ priceValues }/>
-        <MapContainer points={points} prices={ prices } />
+      <Box className="flex shadow " style={{display:'flex', justifyContent:'space-between'}}>
+        <SidebarContainer get_API_Data={get_API_Data} priceValues={ priceValues } setHoods={ setHoods }/>
+        <MapContainer points={points} prices={ prices } hoods = { hoods }/>
       </Box>
     </>
   );

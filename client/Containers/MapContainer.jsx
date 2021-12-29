@@ -20,9 +20,9 @@ const PriceDots = ({text}) => (
   </div>
 );
 
-const placePrices = (min, max) => {
+const placePrices = (min, max, hoods) => {
   const medianPriceDots = [];
-  median_prices.forEach(el => {
+  median_prices.forEach((el, i) => {
     if (el.rent > min && el.rent < max) {
       medianPriceDots.push(
         <PriceDots
@@ -36,7 +36,8 @@ const placePrices = (min, max) => {
   return medianPriceDots;
 };
 
-const MapContainer = ({ points, prices }) => {
+const MapContainer = ({ points, prices, hoods }) => {
+  const [zoomLvl, setZoom] = useState(11);
 
   const heatmapData = {
     positions: points,
@@ -59,19 +60,24 @@ const MapContainer = ({ points, prices }) => {
       ],
       radius: 20,   
       opacity: .75,
-      maxIntensity: 300
+      maxIntensity: 1 / (zoomLvl ** .85) * 600
     }
   };
-  
+
   const midpoint = {lat: 40.7158, lng: -73.9171};
+
   return (
-    <Box sx={{width: '75%', height: '95vh'}}>
+    <Box sx={{width: '75%', height: 'calc(100vh - 64px)'}}>
       <GoogleMapReact 
         bootstrapURLKeys={{ key: process.env.GOOGLE_API , libraries:['visualization'] }}
         defaultCenter={midpoint}
         defaultZoom={11.25}
         heatmapLibrary={true} 
         heatmap={heatmapData}
+        onChange={(e) => {
+          setZoom(e.zoom);
+          console.log("intensity:", 1 / e.zoom * 750 )
+        }}
       >
         {placePrices(prices[0], prices[1])}
         <PriceDots

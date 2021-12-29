@@ -74,7 +74,7 @@ const FilterTypes = ({ selectedComplaints, get_API_Data, selectedZips }) => {
 
   return (
     <>
-      <h2>Narrow Complaint Types:</h2>
+      <h2>Narrow by Complaint Types:</h2>
       <form> 
         <div key={'noise'}>
           <input type="checkbox" id='noise' checked={checkedBoxes['noise']} name='noise' onChange={handleChange} />

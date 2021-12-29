@@ -12,10 +12,7 @@ const Navbar = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant='h3'>Check Block</Typography>
-        <IconButton href="https://github.com/CheckBlock/CheckBlock" target="_blank" color="inherit">
-          <GitHubIcon />
-        </IconButton>
+        <Typography variant='h3'>Neighborpedia</Typography>
       </Toolbar>
     </AppBar>
   );
