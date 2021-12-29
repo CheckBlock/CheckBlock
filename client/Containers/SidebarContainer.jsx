@@ -10,15 +10,16 @@ import {
 } from "@mui/material";
 import RangeSlider from "../Components/RangeSlider.jsx";
 import neighborhoods from "../zip_codes.js";
+import $ from 'jquery';
 
 const bronx = [
   'Kingsbridge - Riverdale', 
   'Northeast Bronx', 
-  'Fordham - Bronx Park ', 
-  'Pelham - Throgs Neck ', 
-  'Crotona - Tremont ',
-  'High Bridge - Morrisania ',
-  'Hunts Point - Mott Haven '
+  'Fordham - Bronx Park', 
+  'Pelham - Throgs Neck', 
+  'Crotona - Tremont',
+  'High Bridge - Morrisania',
+  'Hunts Point - Mott Haven'
 ];
 
 const manhattan = [
@@ -68,12 +69,13 @@ const statenIsland = [
   'South Beach - Tottenville'
 ];
 
-const SidebarContainer = () => {
+const SidebarContainer = ({get_API_Data}) => {
   const [showBronx, setBx] = useState(false);
   const [showManhattan, setM] = useState(false);
   const [showQueens, setQ] = useState(false);
   const [showBk, setBk] = useState(false);
   const [showSI, setSI] = useState(false);
+  const [points, setDataPts] = useState([]);
   
   const [selectedHoods, setHood] = useState([]);
 
@@ -86,14 +88,25 @@ const SidebarContainer = () => {
   // }
   
   const genBorough = (borough) => {
-    return borough.map((el, i) => 
+    return borough.map((el, i) =>
       // <FormControlLabel
       //   key = {`${i}_${borough}`}
       //   control={<Checkbox/>}
       //   label={el}
       //   />
+
+      // when we click a checkbox, it triggers an on click event
+      // passes in the array of zip codes as arg for the API to use.
+      // the api will return data which will get appended to the state.
+      // when the React state changes it causes a render.
+
+      
+
       <div key = {`${i}_${borough}`}>
-        <input type="checkbox" id="test" name={el} onClick={()=> console.log("")}/>
+        <input type="checkbox" id="test" name={el} onClick={() => {
+          get_API_Data(neighborhoods[el])
+          console.log(neighborhoods[el])
+        }} />
         <label htmlFor="test">{el}</label>
       </div>
       );
@@ -101,8 +114,11 @@ const SidebarContainer = () => {
 
   //onChange -> setHood() => selectedHoods.push(neighborhood)
 
+  
+
   return (
     <Box sx={{ width: "15%" }}>
+      {console.log(get_API_Data)}
       <FormGroup>
         <Typography variant="h3">Metrics:</Typography>
         <h2 onClick={()=> setBx(!showBronx)}>Bronx ▾</h2>
